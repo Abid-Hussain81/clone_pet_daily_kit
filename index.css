@@ -1,0 +1,16 @@
+body{
+
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+.container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+img{
+    float: left;
+    clip-path: circle(40%);
+    shape-outside: circle(45%);
+}
