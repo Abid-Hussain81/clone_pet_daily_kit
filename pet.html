@@ -6,306 +6,360 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Navbar Example</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            margin: 0;
-            padding: 0px;
-            font-family: Arial, sans-serif;
-            background: #f5f5f5;
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<style>
+    body {
+        margin: 0;
+        padding: 0px;
+        font-family: Arial, sans-serif;
+        background: #f5f5f5;
+    }
+
+    .navbar {
+        background-color: #f9fafb;
+        border-bottom: 2px solid #001f5f;
+    }
+
+    .navbar-brand img {
+        height: 40px;
+    }
+
+    .nav-link {
+        color: #001f5f;
+        font-weight: 600;
+    }
+
+    .nav-link:hover,
+    .dropdown-item:hover {
+        color: #f9a826;
+    }
+
+    .icon-btn {
+        color: #001f5f;
+        font-size: 1.3rem;
+        margin-left: 15px;
+        position: relative;
+    }
+
+    .mega-section {
+        display: none;
+        background-color: #fff;
+        padding: 30px 50px;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .mega-section.active {
+        display: flex;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
         }
 
-        .navbar {
-            background-color: #f9fafb;
-            border-bottom: 2px solid #001f5f;
+        to {
+            opacity: 1;
+            transform: translateY(0);
         }
+    }
 
-        .navbar-brand img {
-            height: 40px;
-        }
+    .product {
+        border-bottom: 1px solid;
+        padding: 10px 0;
+    }
 
-        .nav-link {
-            color: #001f5f;
-            font-weight: 600;
-        }
+    .product-img {
+        width: 40px;
+        height: auto;
+        object-fit: cover;
+    }
 
-        .nav-link:hover,
-        .dropdown-item:hover {
-            color: #f9a826;
-        }
+    .star-rating {
+        color: orange;
+        font-size: 0.9rem;
+    }
 
-        .icon-btn {
-            color: #001f5f;
-            font-size: 1.3rem;
-            margin-left: 15px;
-            position: relative;
-        }
+    .nav-link.active {
+        border-bottom: 2px solid orange;
+    }
 
-        .cart-badge {
-            position: absolute;
-            top: -6px;
-            right: -8px;
-            background: #001f5f;
-            color: white;
-            font-size: 10px;
-            border-radius: 50%;
-            padding: 2px 5px;
-        }
+    .cart-badge {
+        position: absolute;
+        top: -6px;
+        right: -8px;
+        background: #001f5f;
+        color: white;
+        font-size: 10px;
+        border-radius: 50%;
+        padding: 2px 5px;
+    }
 
-        .carousel-item {
-            height: 50vh;
-            width: 100%;
-        }
+    .carousel-item {
+        height: 50vh;
+        width: 100%;
+    }
 
-        .carousel-item img {
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
-
-
-        h1 {
-            text-align: center;
-            margin-bottom: 30px;
-        }
-
-        .gallery {
-            display: flex;
-            overflow-x: auto;
-            gap: 30px;
-            padding: 10px 0;
-            margin-left: 3%;
-        }
-
-        .gallery img {
-            flex: 0 0 auto;
-            width: 180px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 10px;
-            scroll-snap-align: start;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-        }
+    .carousel-item img {
+        height: 100%;
+        width: 100%;
+        object-fit: cover;
+    }
 
 
+    h1 {
+        text-align: center;
+        margin-bottom: 30px;
+    }
 
-        .category-img {
-            width: 190px;
-            height: 190px;
-            object-fit: contain;
-            border-radius: 50%;
-            border: 2px solid #ddd;
-            background-color: #f8f9fa;
-            transition: transform 0.3s ease;
-        }
+    .gallery {
+        display: flex;
+        overflow-x: auto;
+        gap: 30px;
+        padding: 10px 0;
+        margin-left: 3%;
+    }
+
+    .gallery img {
+        flex: 0 0 auto;
+        width: 180px;
+        height: auto;
+        object-fit: cover;
+        border-radius: 10px;
+        scroll-snap-align: start;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .gallery img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    }
 
 
 
-        .category-label {
-            font-weight: bold;
-            color: #001f5b;
-        }
-
-        .product-section {
-            background-color: #f7a737;
-            padding: 40px 20px;
-        }
-
-        .product-title {
-            text-align: center;
-            color: #001f5b;
-            font-weight: bold;
-            margin-bottom: 30px;
-        }
-
-        .card {
-            border: none;
-            background: #fff;
-            height: 100%;
-            transition: transform 0.2s ease;
-        }
-
-        .card:hover {
-            transform: scale(1.03);
-        }
-
-        .card img {
-            height: 150px;
-            object-fit: contain;
-            padding: 10px;
-        }
-
-        .card-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #001f5b;
-        }
-
-        .card-price {
-            font-weight: bold;
-            color: orange;
-        }
-
-
-        .promo-card {
-            background-color: #c6eafa;
-            /* light blue */
-            padding: 20px;
-            border-radius: 8px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-        }
-
-        .promo-text h5 {
-            font-weight: 700;
-            color: #001f5b;
-        }
-
-        .promo-text p {
-            color: #333;
-            margin-bottom: 15px;
-        }
-
-        .btn-shop {
-            font-weight: bold;
-            border-radius: 5px;
-            padding: 6px 18px;
-            background-color: #001f5b;
-            color: white;
-        }
-
-        .btn-shop:hover,
-        .deal:hover {
-            background-color: #F9A826;
-        }
-
-        .promo-img {
-            max-height: 130px;
-            object-fit: contain;
-        }
-
-        .deal-card {
-            background-color: #001f5b;
-
-        }
-
-        .news-title {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #003399;
-        }
-
-        .read-more-btn {
-            background-color: #001f7f;
-            color: white;
-            border: none;
-            padding: 8px 16px;
-            border-radius: 5px;
-        }
-
-        .read-more-btn:hover {
-            background-color: #F9A826;
-        }
+    .category-img {
+        width: 190px;
+        height: 190px;
+        object-fit: contain;
+        border-radius: 50%;
+        border: 2px solid #ddd;
+        background-color: #f8f9fa;
+        transition: transform 0.3s ease;
+    }
 
 
 
-        .news-card {
-            position: relative;
-            overflow: visible;
-            height: auto;
-        }
+    .category-label {
+        font-weight: bold;
+        color: #001f5b;
+    }
 
-        .news-card img {
-            width: 100%;
-            height: auto;
-            display: block;
-        }
+    .product-section {
+        background-color: #f7a737;
+        padding: 40px 20px;
+    }
 
-        .hover-card {
-            position: relative;
-            overflow: hidden;
-        }
+    .product-title {
+        text-align: center;
+        color: #001f5b;
+        font-weight: bold;
+        margin-bottom: 30px;
+    }
 
-        .overlay-txt {
-            display: flex;
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: white;
-            color: #031A6B;
-            padding: 15px;
-            display: none;
-            flex-direction: column;
-            justify-content: space-between;
-            align-items: center;
-            text-align: left;
-            min-height: 100%;
-        }
+    .card {
+        border: none;
+        background: #fff;
+        height: 100%;
+        transition: transform 0.2s ease;
+    }
 
-        .footer {
-            background: #f0f8ff;
-            background-repeat: repeat;
-            padding: 50px 0 30px;
-            color: #002244;
-        }
+    .card:hover {
+        transform: scale(1.03);
+    }
 
-        .footer a {
-            text-decoration: none;
-            color: #002244;
-        }
+    .card img {
+        height: 150px;
+        object-fit: contain;
+        padding: 10px;
+    }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
+    .card-title {
+        font-size: 1rem;
+        font-weight: 600;
+        color: #001f5b;
+    }
 
-        .footer h5 {
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
+    .card-price {
+        font-weight: bold;
+        color: orange;
+    }
 
-        .subscribe-box input {
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            padding: 10px;
-        }
 
-        .subscribe-box button {
-            border-radius: 0 5px 5px 0;
-        }
+    .promo-card {
+        background-color: #c6eafa;
+        /* light blue */
+        padding: 20px;
+        border-radius: 8px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    }
 
-        .footer .social-icons a {
-            margin: 0 10px;
-            color: #002244;
-            font-size: 1.2rem;
-        }
+    .promo-text h5 {
+        font-weight: 700;
+        color: #001f5b;
+    }
 
-        .footer-bottom {
-            border-top: 1px solid #ccc;
-            margin-top: 30px;
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
+    .promo-text p {
+        color: #333;
+        margin-bottom: 15px;
+    }
 
-        .contact-icons i {
-            margin-right: 8px;
-        }
-    </style>
+    .btn-shop {
+        font-weight: bold;
+        border-radius: 5px;
+        padding: 6px 18px;
+        background-color: #001f5b;
+        color: white;
+    }
+
+    .btn-shop:hover,
+    .deal:hover {
+        background-color: #F9A826;
+    }
+
+    .promo-img {
+        max-height: 130px;
+        object-fit: contain;
+    }
+
+    .deal-card {
+        background-color: #001f5b;
+
+    }
+
+    .news-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #003399;
+    }
+
+    .read-more-btn {
+        background-color: #001f7f;
+        color: white;
+        border: none;
+        padding: 8px 16px;
+        border-radius: 5px;
+    }
+
+    .read-more-btn:hover {
+        background-color: #F9A826;
+    }
+
+
+
+    .news-card {
+        position: relative;
+        overflow: visible;
+        height: auto;
+    }
+
+    .news-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    .hover-card {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .overlay-txt {
+        display: flex;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: white;
+        color: #031A6B;
+        padding: 15px;
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        min-height: 100%;
+    }
+
+    .footer {
+        background: #f0f8ff;
+        background-repeat: repeat;
+        padding: 50px 0 30px;
+        color: #002244;
+    }
+
+    .footer a {
+        text-decoration: none;
+        color: #002244;
+    }
+
+    .footer a:hover {
+        text-decoration: underline;
+    }
+
+    .footer h5 {
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .subscribe-box input {
+        border: 1px solid #ccc;
+        border-radius: 5px 0 0 5px;
+        padding: 10px;
+    }
+
+    .subscribe-box button {
+        border-radius: 0 5px 5px 0;
+    }
+
+    .footer .social-icons a {
+        margin: 0 10px;
+        color: #002244;
+        font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+        border-top: 1px solid #ccc;
+        margin-top: 30px;
+        padding-top: 20px;
+        text-align: center;
+        font-size: 0.9rem;
+    }
+
+    .contact-icons i {
+        margin-right: 8px;
+    }
+
+    .sub-btn {
+        background-color: #031A6B;
+        color: white;
+    }
+
+    .sub-btn:hover {
+        background-color: #F9A826;
+    }
+</style>
 </head>
 
 <body>
     <!-- anouncement Bar -->
-    <div class="announcement-bar text-white px-3 py-2"
+    <div class="announcement-bar text-white px-3 py-1"
         style="background-color: #001f5f; font-weight: 300; position: sticky; top: 0; z-index: 1050;">
         <div class="container">
             <div class="row align-items-center">
@@ -316,10 +370,10 @@
 
                 <!-- Right Links -->
                 <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-wrap gap-2">
-                    <a href="#" class="text-white text-decoration-none">Home</a>
-                    <a href="#" class="text-white text-decoration-none">About Us</a>
-                    <a href="#" class="text-white text-decoration-none">Blog</a>
-                    <a href="#" class="text-white text-decoration-none">Login | Registration</a>
+                    <a href="#" class="text-white text-decoration-none ms-3">Home</a>
+                    <a href="#" class="text-white text-decoration-none ms-3">About Us</a>
+                    <a href="#" class="text-white text-decoration-none ms-3">Blog</a>
+                    <a href="#" class="text-white text-decoration-none ms-3">Login | Registration</a>
                 </div>
             </div>
         </div>
@@ -327,60 +381,177 @@
 
     <!-- Nav Bar  -->
     <nav class="navbar navbar-expand-lg px-4">
-        <a class="navbar-brand d-flex align-items-center" href="#">
-            <img src="media/logo.png" alt="Pet Kit Logo" class="me-2"> 
-        </a>
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="media/logo.png" alt="Pet Kit Logo" class="me-2">
+            </a>
 
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
-            <span class="navbar-toggler-icon"></span>
-        </button>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
 
-        <div class="collapse navbar-collapse justify-content-between" id="navContent">
-            <ul class="navbar-nav ms-3">
-                <li class="nav-item"><a class="nav-link" href="#">Shop</a></li>
+            <div class="collapse navbar-collapse justify-content-between" id="navContent">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link mx-2" href="#">Shop</a></li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Dogs</a>
-                    <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Dog Food</a></li>
-                        <li><a class="dropdown-item" href="#">Toys</a></li>
-                    </ul>
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick=" toggleSelection('dogs')">Dogs</a>
+                    </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Cats</a>
-                    
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle  mx-2" href="#" data-bs-toggle="dropdown" onclick="toggleSelection('cats')">Cats</a>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Birds</a>
-                    
-                </li>
+                    </li>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Fish</a>
-                    
-                </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown">Birds</a>
 
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Reptiles</a>
-                    
-                </li>
-            </ul>
+                    </li>
 
-            <div class="d-flex align-items-center">
-                <a href="#" class="icon-btn"><i class="bi bi-search"></i></a>
-                <a href="#" class="icon-btn"><i class="bi bi-person"></i></a>
-                <a href="#" class="icon-btn"><i class="bi bi-heart"></i></a>
-                <a href="#" class="icon-btn position-relative">
-                    <i class="bi bi-cart"></i>
-                    <span class="cart-badge"></span>
-                </a>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown">Fish</a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown">Reptiles</a>
+
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <a href="#" class="icon-btn mx-3"><i class="bi bi-search"></i></a>
+                    <a href="#" class="icon-btn mx-3"><i class="bi bi-person-fill"></i></a>
+                    <a href="#" class="icon-btn mx-3"><i class="bi bi-heart-fill"></i></a>
+                    <a href="#" class="icon-btn position-relative mx-3">
+                        <i class="bi bi-cart-fill"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
             </div>
         </div>
     </nav>
+
+<div class="container my-5">
+    <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="dogs">
+
+        <!-- Left Column: Categories -->
+        <div class="col-md-3">
+            <h5 class=" fw-bold mb-3 dog-hover">Dogs</h5>
+            <ul class="list-unstyled">
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>House</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cages</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Pee Pads</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Groomings</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls & Feeders</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
+                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Travels</li>
+            </ul>
+        </div>
+
+        <!-- Middle Column: Products -->
+        <div class="col-md-6">
+            <div class="row g-3">
+                <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                    <img src="media/Rubber Toy for Large Dog.jpeg" class="img-fluid rounded me-3" style="width: 100px;" alt="Rubber Toy">
+                    <div>
+                        <div class="fw-semibold">Rubber Toy for Large Dog</div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                    <img src="media/Bag and Dog.jpeg" class="img-fluid rounded me-3" style="width: 100px;" alt="Dog Bed">
+                    <div>
+                        <div class="fw-semibold">Bed for Dogs</div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                    <img src="media/dog-grooming.jpeg" class="img-fluid rounded me-3" style="width: 100px;" alt="Grooming">
+                    <div>
+                        <div class="fw-semibold">Dog Grooming</div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column: Feature Image -->
+        <div class="col-md-3 text-center">
+            <img src="https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg"
+                alt="German Shepherd" class="img-fluid rounded shadow-sm">
+        </div>
+        
+    </div>
+</div>
+
+<div class="container my-5">
+  <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="cats">
+    
+    <!-- Left Column -->
+    <div class="col-md-4">
+      <h5 class="fw-bold mb-3 cat-hover">Cats</h5>
+      <ul class="list-unstyled">
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cat House</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls and Feeders</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Carrier and Travel</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Clothes</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Scratchers and Climbers</li>
+        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Grooming</li>
+      </ul>
+    </div>
+
+    <!-- Center Column with Product Cards -->
+    <div class="col-md-4">
+      <div class="row g-3">
+        <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+          <img src="media/cat-bed.jpeg" alt="cat bed" class="img-fluid rounded me-3" style="width: 100px; height: auto;">
+          <div>
+            <div class="fw-semibold">Bed for cats</div>
+            <div class="star-rating text-warning">★★★★★</div>
+          </div>
+        </div>
+
+        <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+          <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming" style="width: 100px; height: auto;">
+          <div>
+            <div class="fw-semibold">Cat's Grooming</div>
+            <div class="star-rating text-warning">★★★★★</div>
+          </div>
+        </div>
+
+        <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+          <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming" style="width: 100px; height: auto;">
+          <div>
+            <div class="fw-semibold">Cat's Grooming</div>
+            <div class="star-rating text-warning">★★★★★</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column (Image) -->
+    <div class="col-md-4 text-center">
+      <img src="media/cats.jpeg" alt="Cat" class="img-fluid rounded shadow-sm">
+    </div>
+
+  </div>
+</div>
+
+
+
     <!-- carousel -->
-    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+      <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
 
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"></button>
@@ -919,7 +1090,7 @@
             <h4><strong>Subscribe To Our Newsletter</strong></h4>
             <div class="d-flex justify-content-center subscribe-box mt-3">
                 <input type="email" placeholder="Email" class="form-control w-25">
-                <button class="btn btn-primary px-4">Subscribe</button>
+                <button class="btn px-4 sub-btn ms-3"><strong>Subscribe</strong></button>
             </div>
         </div>
 
@@ -979,7 +1150,7 @@
                 <!-- Contact -->
                 <div class="col-md-2">
                     <h5>Contact Us</h5>
-                    <p class="contact-icons">contact@petdailykit.com</p>
+                    <p class="contact-icons"><a href="mailto:contact@petdailykit.com">contact@petdailykit.com</a></p>
                     <p class="contact-icons">5100 Dexham Road Ste A, Rowlett, Texas.
                         75088</p>
                 </div>
@@ -993,6 +1164,25 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+
+    <script>
+        let currentVisible = null;
+
+        function toggleSelection(id) {
+            const section = document.getElementById(id);
+
+            if (currentVisible === section) {
+                section.classList.remove("active");
+                currentVisible = null;
+            } else {
+                document.querySelectorAll('.mega-section').forEach(sect => sect.classList.remove('active'));
+                section.classList.add('active');
+                currentVisible = section;
+            }
+
+
+        }
+    </script>
 
     <script>
         $(document).ready(function () {
@@ -1017,6 +1207,7 @@
                 }
             );
         });
+
     </script>
 
 </body>
