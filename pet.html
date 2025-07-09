@@ -10,16 +10,25 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 <style>
+    html,
     body {
+        height: 100%;
         margin: 0;
-        padding: 0px;
-        font-family: Arial, sans-serif;
-        background: #f5f5f5;
+        padding: 0;
+        box-sizing: border-box;
+        overflow-x: hidden;
+    }
+
+    .announcement-bar a:hover {
+        color: #F9A826 !important;
+    }
+
+    .announcement-bar p:hover {
+        color: #F9A826 !important;
     }
 
     .navbar {
         background-color: #f9fafb;
-        border-bottom: 2px solid #001f5f;
     }
 
     .navbar-brand img {
@@ -354,31 +363,69 @@
     .sub-btn:hover {
         background-color: #F9A826;
     }
+
+    .list-unstyled li a:hover {
+        font-weight: normal;
+        color: #F9A826;
+    }
+
+    .sidebar {
+        margin: 0;
+        padding: 0;
+        width: 300px;
+        height: 100%;
+        background-color: whitesmoke;
+        overflow: hidden;
+        position: fixed;
+        visibility: hidden;
+        float: right;
+        transform: translateX(100%);
+        z-index: 1200;
+        transition: transform 0.3s ease-in-out;
+        right: 0;
+
+    }
+
+    .sidebar.show {
+        visibility: visible;
+        transform: translateX(0);
+    }
+
+    .sidebar.hide {
+        visibility: hidden;
+    }
 </style>
 </head>
 
 <body>
     <!-- anouncement Bar -->
-    <div class="announcement-bar text-white px-3 py-1"
+    <div class="announcement-bar text-white px-3 py-1 fw-semibold"
         style="background-color: #001f5f; font-weight: 300; position: sticky; top: 0; z-index: 1050;">
         <div class="container">
             <div class="row align-items-center">
                 <!-- Left Text -->
-                <div class="col-12 col-md-6 text-center text-md-start mb-2 mb-md-0">
-                    ⭐ Free Shipping On Orders Over $35
+                <div class="col-12 col-md-6 text-center text-md-start announce ">
+                    <p class="m-1 p-0" style="display: inline;">⭐ Free Shipping On Orders Over $35 ⭐</p>
                 </div>
 
                 <!-- Right Links -->
-                <div class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-wrap gap-2">
-                    <a href="#" class="text-white text-decoration-none ms-3">Home</a>
-                    <a href="#" class="text-white text-decoration-none ms-3">About Us</a>
-                    <a href="#" class="text-white text-decoration-none ms-3">Blog</a>
-                    <a href="#" class="text-white text-decoration-none ms-3">Login | Registration</a>
+                <div
+                    class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-wrap gap-2 announce">
+                    <p class="m-0 p-0 ann"><a href="#" class="text-white text-decoration-none ms-3">Home</a></p>
+                    <p class="m-0 p-0 ann"> <a href="#" class="text-white text-decoration-none ms-3">About Us</a></p>
+                    <p class="m-0 p-0 ann"><a href="#" class="text-white text-decoration-none ms-3">Blog</a></p>
+                    <p class="m-0 p-0 ann"><a href="#"
+                            class="text-white text-decoration-none ms-3">Login|Registration</a></p>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="btn btn-dark side-btn " style="display: block; float: right;" id="close-btn">x</button>
+        <p class="mt-5">No content in sidebar</p>
+    </div>
     <!-- Nav Bar  -->
     <nav class="navbar navbar-expand-lg px-4">
         <div class="container">
@@ -400,22 +447,26 @@
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle  mx-2" href="#" data-bs-toggle="dropdown" onclick="toggleSelection('cats')">Cats</a>
+                        <a class="nav-link dropdown-toggle  mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('cats')">Cats</a>
 
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown" onclick="toggleSelection('birds')">Birds</a>
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('birds')">Birds</a>
 
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown">Fish</a>
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('fish')">Fish</a>
 
                     </li>
 
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown">Reptiles</a>
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('reptiles')">Reptiles</a>
 
                     </li>
                 </ul>
@@ -425,7 +476,7 @@
                     <a href="#" class="icon-btn mx-3"><i class="bi bi-person-fill"></i></a>
                     <a href="#" class="icon-btn mx-3"><i class="bi bi-heart-fill"></i></a>
                     <a href="#" class="icon-btn position-relative mx-3">
-                        <i class="bi bi-cart-fill"></i>
+                        <i class="bi bi-cart-fill" id="cart"></i>
                         <span class="cart-badge">0</span>
                     </a>
                 </div>
@@ -433,172 +484,249 @@
         </div>
     </nav>
 
-<div class="container my-5">
-    <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="dogs">
 
-        <!-- Left Column: Categories -->
-        <div class="col-md-3">
-            <h5 class=" fw-bold mb-3 dog-hover">Dogs</h5>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>House</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cages</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Pee Pads</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Groomings</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls & Feeders</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Travels</li>
-            </ul>
+
+    <div class="container my-5">
+        <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="dogs">
+
+            <!-- Left Column: Categories -->
+            <div class="col-md-4">
+                <h5 class=" fw-bold mb-3 dog-hover">Dogs</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>House</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cages</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Pee Pads</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Groomings</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls & Feeders</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Travels</li>
+                </ul>
+            </div>
+
+            <!-- Middle Column: Products -->
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                        <img src="media/Rubber Toy for Large Dog.jpeg" class="img-fluid rounded me-3"
+                            style="width: 100px;" alt="Rubber Toy">
+                        <div>
+                            <div class="fw-semibold">Rubber Toy for Large Dog</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                        <img src="media/Bag and Dog.jpeg" class="img-fluid rounded me-3" style="width: 100px;"
+                            alt="Dog Bed">
+                        <div>
+                            <div class="fw-semibold">Bed for Dogs</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                        <img src="media/dog-grooming.jpeg" class="img-fluid rounded me-3" style="width: 100px;"
+                            alt="Grooming">
+                        <div>
+                            <div class="fw-semibold">Dog Grooming</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Feature Image -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img src="https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg"
+                    alt="German Shepherd" class="img-fluid rounded shadow-sm" style="width: 250px;">
+            </div>
+
         </div>
+    </div>
 
-        <!-- Middle Column: Products -->
-        <div class="col-md-6">
-            <div class="row g-3">
-                <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
-                    <img src="media/Rubber Toy for Large Dog.jpeg" class="img-fluid rounded me-3" style="width: 100px;" alt="Rubber Toy">
-                    <div>
-                        <div class="fw-semibold">Rubber Toy for Large Dog</div>
+    <!-- Cats section -->
+    <div class="container my-5">
+        <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="cats">
+
+            <!-- Left Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold mb-3 cat-hover">Cats</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cat House</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls and Feeders</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Carrier and Travel</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Clothes</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Scratchers and Climbers</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Grooming</li>
+                </ul>
+            </div>
+
+            <!-- Center Column -->
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/cat-bed.jpeg" alt="cat bed" class="img-fluid rounded me-3"
+                            style="width: 100px;">
+                        <div>
+                            <div class="fw-semibold">Bed for cats</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming"
+                            style="width: 100px;">
+                        <div>
+                            <div class="fw-semibold">Cat's Grooming</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming"
+                            style="width: 100px;">
+                        <div>
+                            <div class="fw-semibold">Cat's Grooming</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-4 d-flex">
+                <img src="media/cats.jpeg" alt="Cat" class="img-fluid rounded shadow-sm ms-5">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Birds -->
+    <div class="container" my-5>
+        <div class="row mega-section bg-white shadow p-4 g-3 rounded align-items-start " id="birds">
+
+            <div class="col-md-4">
+                <h5 class="fw-bold birds-hover mb-3">Birds</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Feeders</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Houses</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Nesting and Bedding</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Perches and Toys</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/bird-toy.jpeg" alt="" class="img-fluid rounded me-3"
+                            style="width: 100px; height: auto;">
+                        <div class="fw-semibold">Bird Accessories for Cage </div>
                         <div class="star-rating text-warning">★★★★★</div>
                     </div>
                 </div>
 
-                <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
-                    <img src="media/Bag and Dog.jpeg" class="img-fluid rounded me-3" style="width: 100px;" alt="Dog Bed">
-                    <div>
-                        <div class="fw-semibold">Bed for Dogs</div>
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/bird-toy2.jpeg" alt="" class="img-fluid rounded me-3"
+                            style="width: 100px; height: auto;">
+                        <div class="fw-semibold">4-piece natural wood Perches </div>
                         <div class="star-rating text-warning">★★★★★</div>
                     </div>
                 </div>
 
-                <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
-                    <img src="media/dog-grooming.jpeg" class="img-fluid rounded me-3" style="width: 100px;" alt="Grooming">
-                    <div>
-                        <div class="fw-semibold">Dog Grooming</div>
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/bird-ladder.jpeg" alt="" class="img-fluid rounded me-3"
+                            style="width: 100px; height: auto;">
+                        <div class="fw-semibold">Birds Ladder Toy for cage </div>
                         <div class="star-rating text-warning">★★★★★</div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Right Column: Feature Image -->
-        <div class="col-md-3 text-center">
-            <img src="https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg"
-                alt="German Shepherd" class="img-fluid rounded shadow-sm">
-        </div>
-        
-    </div>
-</div>
-
-<div class="container my-5">
-  <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="cats">
-
-    <!-- Left Column -->
-    <div class="col-md-4">
-      <h5 class="fw-bold mb-3 cat-hover">Cats</h5>
-      <ul class="list-unstyled">
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cat House</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls and Feeders</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Carrier and Travel</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Clothes</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Scratchers and Climbers</li>
-        <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Grooming</li>
-      </ul>
-    </div>
-
-    <!-- Center Column -->
-    <div class="col-md-4">
-      <div class="row g-3">
-        <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
-          <img src="media/cat-bed.jpeg" alt="cat bed" class="img-fluid rounded me-3" style="width: 100px;">
-          <div>
-            <div class="fw-semibold">Bed for cats</div>
-            <div class="star-rating text-warning">★★★★★</div>
-          </div>
-        </div>
-
-        <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
-          <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming" style="width: 100px;">
-          <div>
-            <div class="fw-semibold">Cat's Grooming</div>
-            <div class="star-rating text-warning">★★★★★</div>
-          </div>
-        </div>
-
-        <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
-          <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming" style="width: 100px;">
-          <div>
-            <div class="fw-semibold">Cat's Grooming</div>
-            <div class="star-rating text-warning">★★★★★</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Right Column -->
-    <div class="col-md-4 d-flex">
-      <img src="media/cats.jpeg" alt="Cat" class="img-fluid rounded shadow-sm ms-5">
-    </div>
-
-  </div>
-</div>
-
-
-
-<div class="container" my-5>
-    <div class="row mega-section bg-white shadow p-4 g-3 rounded align-items-start " id="birds">
-
-        <div class="col-md-4">
-            <h5 class="fw-bold birds-hover mb-3" >Birds</h5>
-            <ul class="list-unstyled">
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Feeders</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Houses</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Nesting and Bedding</li>
-                <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Perches and Toys</li>
-            </ul>
-        </div>
-
-        <div class="col-md-4">
-            <div class="row g-3">
-                <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
-                    <img src="media/bird-toy.jpeg" alt="" class="img-fluid rounded"  style="width: 100px; height: auto;">
-                    <div class="fw-semibold">Bird Accessories for Cage </div>
-                    <div class="star-rating text-warning">★★★★★</div>
-                </div>
+            <div class="col-md-4 d-flex">
+                <img src="media/birds.jpeg" alt="Cat" class="img-fluid rounded shadow-sm ms-5">
             </div>
 
-             <div class="row g-3">
-                <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
-                    <img src="media/bird-toy2.jpeg" alt="" class="img-fluid rounded"  style="width: 100px; height: auto;">
-                    <div class="fw-semibold">4-piece natural wood Perches </div>
-                    <div class="star-rating text-warning">★★★★★</div>
-                </div>
+        </div>
+    </div>
+
+    <!-- Fish Section -->
+    <div class="container" my-5>
+        <div class="row mega-section bg-white shadow p-4 g-3 rounded align-items-start " id="fish">
+            <!-- left columnn -->
+            <div class="col-md-4">
+                <h5 class="fw-bold birds-hover mb-3">Fish</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Aquarium Substrates Gravels
+                        and Sand</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Decor</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Fish Health and Wellness</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Lightings</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Tanks and Aquarim</li>
+                </ul>
             </div>
 
-             <div class="row g-3">
-                <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
-                    <img src="media/bird-ladder.jpeg" alt="" class="img-fluid rounded"  style="width: 100px; height: auto;">
-                    <div class="fw-semibold">Birds Ladder Toy for cage </div>
-                    <div class="star-rating text-warning">★★★★★</div>
+            <!-- middle column -->
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-start">
+                        <img src="https://www.petzlifeworld.in/cdn/shop/files/71r2nhumdtL._SX679.jpg?v=1714743903"
+                            alt="" class="img-fluid rounded me-3" style="width: 100px; height: auto;">
+                        <div class="fw-semibold">Aquarium fishing net with plastic handle </div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
                 </div>
+
+                <!-- RIGHT COLUMN -->
+
+            </div>
+            <div class="col-md-4 d-flex">
+                <img src="https://www.aquariumcoop.com/cdn/shop/articles/care-guide-for-betta-fish-the-best-beginner-pet-fish-599115.jpg?v=1659975681"
+                    alt="Cat" class="img-fluid rounded shadow-sm ms-5" style="width: 250px;">
             </div>
         </div>
-
-        <div class="col-md-4 d-flex">
-      <img src="media/birds.jpeg" alt="Cat" class="img-fluid rounded shadow-sm ms-5">
     </div>
+    <!-- Reptiles section -->
+    <div class="container my-5">
+        <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="reptiles">
 
+            <!-- Left Column: Categories -->
+            <div class="col-md-4">
+                <h5 class=" fw-bold mb-3 dog-hover">Reptiles</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bedding and Substrat</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Decor and Accessories</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Environmental Control</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Health and Wellness</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Heating and Lighting </li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Tanks and Terrariums</li>
+                </ul>
+            </div>
+
+            <!-- Middle Column: Products -->
+            <div class="col-md-4">
+
+            </div>
+            <!-- Right Column: Feature Image -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0DKwykwtsWZrep9dqkaRjDM2adeMtooQOmg&s"
+                    alt="German Shepherd" class="img-fluid rounded shadow-sm" style="width: 250px;">
+            </div>
+
+        </div>
     </div>
-</div>
-
 
     <!-- carousel -->
-      <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
+    <div id="bannerCarousel" class="carousel slide" data-bs-ride="carousel">
 
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#bannerCarousel" data-bs-slide-to="0" class="active"></button>
@@ -631,19 +759,95 @@
     <!-- Top Quality Pet Supplies -->
     <h2 class="text-center mt-5 fw-bold" style="color: #031A6B;">Our Top Quality Pet Supplies</strong></h2> <br>
     <p class="text-center"><strong>Welcome to Pet Daily Kit, where you’ll find all the daily pet stuff your furry
-            friends need for a happy and healthy life. Discover our range of top performance pet products, designed to
-            ensure your pet’s daily joy and well-being. Shop now and experience the difference our trusted essentials!
+            friends need for a happy and healthy life. Discover our range of top performance pet products, designed
+            to
+            ensure your pet’s daily joy and well-being. Shop now and experience the difference our trusted
+            essentials!
     </p>
     <br><br>
     <h2 class="text-center" style="color: #031A6B;"><strong>Top products</strong></h2>
     <!-- Top Products -->
-    <div class="gallery">
-        <img src="media/dog-house.jpeg" alt="Dogs">
-        <img src="media/Toys and Cat.jpeg" alt="Cats">
-        <img src="media/Cat Harness Chest Strap with Leash.jpeg" alt="small pets">
-        <img src="media/travel.jpeg" alt="birds">
-        <img src="media/bed.jpeg" alt="reptiles">
-        <img src="media/pet Hair Electric Stainless Steel Hair Trimmer.jpeg" alt="fish">
+    <div class="container">
+        <div class="row justify-content-center">
+
+
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="card">
+                    <a href="dog-color.html" target="_blank" style="text-decoration: none;">
+                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToR-8yiVQXLA0f4ZrGiLd8p7zBRwkLfi1j6A&s" class="card-img-top" alt="Trimmer">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Adjustable dog collor for outdoor</h6>
+                            <p class="card-price">$14.99</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="card">
+                    <a href="cat-toy.html" style="text-decoration: none;">
+                        <img src="media/Toys and Cat.jpeg" class="card-img-top" alt="Harness">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Toys for cats to spend quality time</h6>
+                            <p class="card-price">$14.99</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="card">
+                    <a href="" style="text-decoration: none;">
+                        <img src="media/Cat Harness Chest Strap with Leash.jpeg" class="card-img-top" alt="Bird Toy">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Cat Harness Chest Strap With Laesh</h6>
+                            <p class="card-price">$10.99</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="card">
+                    <a href="" style="text-decoration: none;">
+                        <img src="media/travel.jpeg" class="card-img-top" alt="Dog Toy">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Feel comforts while traveling with pet</h6>
+                            <p class="card-price">$20.99</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="card">
+                    <a href="" style="text-decoration: none;">
+                        <img src="media/bed.jpeg" class="card-img-top" alt="Rubber Bone">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Soft bed for dog to rest </h6>
+                            <p class="card-price">$18.99</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="col-6 col-md-3 col-lg-2">
+                <div class="card">
+                    <a href="" style="text-decoration: none;">
+                        <img src="media/Wishbone Durable Dog Chew Toy.jpeg" class="card-img-top" alt="Wishbone Toy">
+                        <div class="card-body text-center">
+                            <h6 class="card-title">Wishbone Durable Dog Chew Toy</h6>
+                            <p class="card-price">$8.99</p>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <div class="text-center mt-5">
@@ -692,7 +896,7 @@
         </div>
     </div>
 
-    <!-- our products -->
+    <!-- our products todays product -->
     <section class="product-section">
         <div class="container">
             <h2 class="product-title">Today’s Featured Products</h2>
@@ -1098,7 +1302,8 @@
                         <div class="news-card position-relative hover-card d-flex flex-column h-100">
                             <img src="media/dog-grooming.jpeg" alt="Dog Grooming" class="img-fluid rounded">
                             <div class="overlay-txt">
-                                <h6 class="fw-bold">Dog Grooming Tips to Keep Your Best Friend Healthy and Happy</h6>
+                                <h6 class="fw-bold">Dog Grooming Tips to Keep Your Best Friend Healthy and Happy
+                                </h6>
                                 <p class="text-muted">Where your dog is obsessive groomer or wants to ...</p>
                                 <button class="read-more-btn">Read More</button>
                             </div>
@@ -1170,8 +1375,10 @@
                 <div class="col-md-4 text-center">
                     <img src="media/logo.png" alt="Pet Daily Kit Logo" width="120" />
                     <p class="mt-3 text-muted ">
-                        PetDailyKit truly comprehends that your adorable furry companions deserve nothing but the very
-                        best, which is why we’ve carefully handpicked an extensive collection of products to fulfill all
+                        PetDailyKit truly comprehends that your adorable furry companions deserve nothing but the
+                        very
+                        best, which is why we’ve carefully handpicked an extensive collection of products to fulfill
+                        all
                         their needs.
                     </p>
                     <div class="social-icons mt-3">
@@ -1197,7 +1404,8 @@
                 <!-- Contact -->
                 <div class="col-md-2">
                     <h5>Contact Us</h5>
-                    <p class="contact-icons"><a href="mailto:contact@petdailykit.com">contact@petdailykit.com</a></p>
+                    <p class="contact-icons"><a href="mailto:contact@petdailykit.com">contact@petdailykit.com</a>
+                    </p>
                     <p class="contact-icons">5100 Dexham Road Ste A, Rowlett, Texas.
                         75088</p>
                 </div>
@@ -1255,6 +1463,20 @@
             );
         });
 
+    </script>
+
+    <script>
+        const btn = document.getElementById('cart');
+        const sidebar = document.getElementById('sidebar');
+        const close = document.getElementById('close-btn');
+
+        btn.addEventListener('click', () => {
+            sidebar.classList.add('show');
+        });
+
+        close.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+        })
     </script>
 
 </body>

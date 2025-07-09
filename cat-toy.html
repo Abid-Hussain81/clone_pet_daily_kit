@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Single Product </title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        .announcement-bar a:hover {
+            color: #F9A826 !important;
+        }
+
+        .announcement-bar p:hover {
+            color: #F9A826 !important;
+        }
+
+        .navbar {
+            background-color: #f9fafb;
+        }
+
+        .navbar-brand img {
+            height: 40px;
+        }
+
+        .nav-link {
+            color: #001f5f;
+            font-weight: 600;
+        }
+
+        .nav-link:hover,
+        .dropdown-item:hover {
+            color: #f9a826;
+        }
+
+        .icon-btn {
+            color: #001f5f;
+            font-size: 1.3rem;
+            margin-left: 15px;
+            position: relative;
+        }
+
+        .cart-badge {
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            background: #001f5f;
+            color: white;
+            font-size: 10px;
+            border-radius: 50%;
+            padding: 2px 5px;
+        }
+
+        .mega-section {
+            display: none;
+            background-color: #fff;
+            padding: 30px 50px;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        .mega-section.active {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 300px;
+            height: 100%;
+            background-color: whitesmoke;
+            overflow: hidden;
+            position: fixed;
+            visibility: hidden;
+            float: right;
+            transform: translateX(100%);
+            z-index: 1200;
+            transition: transform 0.3s ease-in-out;
+            right: 0;
+
+        }
+
+        .sidebar.show {
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .sidebar.hide {
+            visibility: hidden;
+        }
+
+
+        .thumbnail-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+
+        .thumbnail-img.active {
+            border-color: #0d6efd;
+        }
+
+        #main-img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+
+
+        .footer {
+            background: #f0f8ff;
+            background-repeat: repeat;
+            padding: 50px 0 30px;
+            color: #002244;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #002244;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer h5 {
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-box input {
+            border: 1px solid #ccc;
+            border-radius: 5px 0 0 5px;
+            padding: 10px;
+        }
+
+        .subscribe-box button {
+            border-radius: 0 5px 5px 0;
+        }
+
+        .footer .social-icons a {
+            margin: 0 10px;
+            color: #002244;
+            font-size: 1.2rem;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #ccc;
+            margin-top: 30px;
+            padding-top: 20px;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+
+        .contact-icons i {
+            margin-right: 8px;
+        }
+
+        .sub-btn {
+            background-color: #031A6B;
+            color: white;
+        }
+
+        .sub-btn:hover {
+            background-color: #F9A826;
+        }
+
+        .list-unstyled li a:hover {
+            font-weight: normal;
+            color: #F9A826;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- anouncement Bar -->
+    <div class="announcement-bar text-white px-3 py-1 fw-semibold"
+        style="background-color: #001f5f; font-weight: 300; position: sticky; top: 0; z-index: 1050;">
+        <div class="container">
+            <div class="row align-items-center">
+                <!-- Left Text -->
+                <div class="col-12 col-md-6 text-center text-md-start announce ">
+                    <p class="m-1 p-0" style="display: inline;">⭐ Free Shipping On Orders Over $35 ⭐</p>
+                </div>
+
+                <!-- Right Links -->
+                <div
+                    class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-wrap gap-2 announce">
+                    <p class="m-0 p-0 ann"><a href="#" class="text-white text-decoration-none ms-3">Home</a></p>
+                    <p class="m-0 p-0 ann"> <a href="#" class="text-white text-decoration-none ms-3">About Us</a></p>
+                    <p class="m-0 p-0 ann"><a href="#" class="text-white text-decoration-none ms-3">Blog</a></p>
+                    <p class="m-0 p-0 ann"><a href="#"
+                            class="text-white text-decoration-none ms-3">Login|Registration</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar -->
+    <div class="sidebar" id="sidebar">
+        <button class="btn btn-dark side-btn " style="display: block; float: right;" id="close-btn">x</button>
+        <p class="mt-5">No content in sidebar</p>
+    </div>
+    <!-- Nav Bar  -->
+    <nav class="navbar navbar-expand-lg px-4">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="media/logo.png" alt="Pet Kit Logo" class="me-2">
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse justify-content-between" id="navContent">
+                <ul class="navbar-nav ms-3">
+                    <li class="nav-item"><a class="nav-link mx-2" href="#">Shop</a></li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick=" toggleSelection('dogs')">Dogs</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle  mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('cats')">Cats</a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('birds')">Birds</a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('fish')">Fish</a>
+
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
+                            onclick="toggleSelection('reptiles')">Reptiles</a>
+
+                    </li>
+                </ul>
+
+                <div class="d-flex align-items-center">
+                    <a href="#" class="icon-btn mx-3"><i class="bi bi-search"></i></a>
+                    <a href="#" class="icon-btn mx-3"><i class="bi bi-person-fill"></i></a>
+                    <a href="#" class="icon-btn mx-3"><i class="bi bi-heart-fill"></i></a>
+                    <a href="#" class="icon-btn position-relative mx-3">
+                        <i class="bi bi-cart-fill" id="cart"></i>
+                        <span class="cart-badge">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="dogs">
+
+            <!-- Left Column: Categories -->
+            <div class="col-md-4">
+                <h5 class=" fw-bold mb-3 dog-hover">Dogs</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>House</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cages</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Pee Pads</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Groomings</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls & Feeders</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Travels</li>
+                </ul>
+            </div>
+
+            <!-- Middle Column: Products -->
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                        <img src="media/Rubber Toy for Large Dog.jpeg" class="img-fluid rounded me-3"
+                            style="width: 100px;" alt="Rubber Toy">
+                        <div>
+                            <div class="fw-semibold">Rubber Toy for Large Dog</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                        <img src="media/Bag and Dog.jpeg" class="img-fluid rounded me-3" style="width: 100px;"
+                            alt="Dog Bed">
+                        <div>
+                            <div class="fw-semibold">Bed for Dogs</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 d-flex bg-light rounded shadow-sm p-2 align-items-center">
+                        <img src="media/dog-grooming.jpeg" class="img-fluid rounded me-3" style="width: 100px;"
+                            alt="Grooming">
+                        <div>
+                            <div class="fw-semibold">Dog Grooming</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Feature Image -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img src="https://cdn.britannica.com/79/232779-050-6B0411D7/German-Shepherd-dog-Alsatian.jpg"
+                    alt="German Shepherd" class="img-fluid rounded shadow-sm" style="width: 250px;">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Cats section -->
+    <div class="container my-5">
+        <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="cats">
+
+            <!-- Left Column -->
+            <div class="col-md-4">
+                <h5 class="fw-bold mb-3 cat-hover">Cats</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Cat House</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Beds</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bowls and Feeders</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Carrier and Travel</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Clothes</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Toys</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Collars</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Leashes</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Scratchers and Climbers</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Grooming</li>
+                </ul>
+            </div>
+
+            <!-- Center Column -->
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/cat-bed.jpeg" alt="cat bed" class="img-fluid rounded me-3"
+                            style="width: 100px;">
+                        <div>
+                            <div class="fw-semibold">Bed for cats</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming"
+                            style="width: 100px;">
+                        <div>
+                            <div class="fw-semibold">Cat's Grooming</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/cat-groomings.jpeg" class="img-fluid rounded me-3" alt="cat grooming"
+                            style="width: 100px;">
+                        <div>
+                            <div class="fw-semibold">Cat's Grooming</div>
+                            <div class="star-rating text-warning">★★★★★</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="col-md-4 d-flex">
+                <img src="media/cats.jpeg" alt="Cat" class="img-fluid rounded shadow-sm ms-5">
+            </div>
+
+        </div>
+    </div>
+
+
+    <!-- Birds -->
+    <div class="container" my-5>
+        <div class="row mega-section bg-white shadow p-4 g-3 rounded align-items-start " id="birds">
+
+            <div class="col-md-4">
+                <h5 class="fw-bold birds-hover mb-3">Birds</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Feeders</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Houses</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Nesting and Bedding</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Perches and Toys</li>
+                </ul>
+            </div>
+
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/bird-toy.jpeg" alt="" class="img-fluid rounded me-3"
+                            style="width: 100px; height: auto;">
+                        <div class="fw-semibold">Bird Accessories for Cage </div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/bird-toy2.jpeg" alt="" class="img-fluid rounded me-3"
+                            style="width: 100px; height: auto;">
+                        <div class="fw-semibold">4-piece natural wood Perches </div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-center">
+                        <img src="media/bird-ladder.jpeg" alt="" class="img-fluid rounded me-3"
+                            style="width: 100px; height: auto;">
+                        <div class="fw-semibold">Birds Ladder Toy for cage </div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4 d-flex">
+                <img src="media/birds.jpeg" alt="Cat" class="img-fluid rounded shadow-sm ms-5">
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Fish Section -->
+    <div class="container" my-5>
+        <div class="row mega-section bg-white shadow p-4 g-3 rounded align-items-start " id="fish">
+            <!-- left columnn -->
+            <div class="col-md-4">
+                <h5 class="fw-bold birds-hover mb-3">Fish</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Aquarium Substrates Gravels
+                        and Sand</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Decor</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Fish Health and Wellness</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Lightings</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Tanks and Aquarim</li>
+                </ul>
+            </div>
+
+            <!-- middle column -->
+            <div class="col-md-4">
+                <div class="row g-3">
+                    <div class="col-12 bg-white d-flex rounded shadow-sm p-2 align-items-start">
+                        <img src="https://www.petzlifeworld.in/cdn/shop/files/71r2nhumdtL._SX679.jpg?v=1714743903"
+                            alt="" class="img-fluid rounded me-3" style="width: 100px; height: auto;">
+                        <div class="fw-semibold">Aquarium fishing net with plastic handle </div>
+                        <div class="star-rating text-warning">★★★★★</div>
+                    </div>
+                </div>
+
+                <!-- RIGHT COLUMN -->
+
+            </div>
+            <div class="col-md-4 d-flex">
+                <img src="https://www.aquariumcoop.com/cdn/shop/articles/care-guide-for-betta-fish-the-best-beginner-pet-fish-599115.jpg?v=1659975681"
+                    alt="Cat" class="img-fluid rounded shadow-sm ms-5" style="width: 250px;">
+            </div>
+        </div>
+    </div>
+    <!-- Reptiles section -->
+    <div class="container my-5">
+        <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="reptiles">
+
+            <!-- Left Column: Categories -->
+            <div class="col-md-4">
+                <h5 class=" fw-bold mb-3 dog-hover">Reptiles</h5>
+                <ul class="list-unstyled">
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Bedding and Substrat</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Decor and Accessories</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Environmental Control</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Health and Wellness</li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Heating and Lighting </li>
+                    <li class="mb-2"><i class="bi bi-chevron-right text-warning me-2"></i>Tanks and Terrariums</li>
+                </ul>
+            </div>
+
+            <!-- Middle Column: Products -->
+            <div class="col-md-4">
+
+            </div>
+            <!-- Right Column: Feature Image -->
+            <div class="col-md-4 d-flex align-items-center justify-content-center">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR0DKwykwtsWZrep9dqkaRjDM2adeMtooQOmg&s"
+                    alt="German Shepherd" class="img-fluid rounded shadow-sm" style="width: 250px;">
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <p class="m-3" style="color:  #031A6B;">Home/Products/Fun games for cat to play</p>
+    </div>
+    <hr>
+
+    <!-- main area  -->
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class=" col-md-4">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQbAFYf42w2Qx2IuZUboO-LfXIL3w_4IWuZlA&s"
+                    alt="" style="height: 300px; margin-right: 30px;" class="img-fluid rounded">
+
+                <div class="d-flex justify-content-center gap-2 flex-wrap mt-4 " style="margin-right: 50px;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjaumrcxkx_T6l__1kjmx3OgF4Dg8JFCN6vg&s"
+                        class="thumbnail-img active" onclick="changeImage(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdlLvPrETbVlHdk_6SEibgJxtBYE0I_B1yvw&s"
+                        class="thumbnail-img" onclick="changeImage(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwfifwQnEOWnptoVPMjFEJOmGXS3ZA7vrzjA&s"
+                        class="thumbnail-img" onclick="changeImage(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT640CdarTFHbJBqoEHvEZWr3yh4AFsVL7f4g&s"
+                        class="thumbnail-img" onclick="changeImage(this)">
+                </div>
+            </div>
+
+            <div class="col-md-8">
+                <h2 class="fw-normal">
+                    Fun Games For Cats To Play
+                </h2>
+                <h3 class="mt-3"><strong>$11.99-$15.99</strong></h3>
+                <h4>Color </h4>
+                <button type="button" class="btn btn-light ms-2" style="border: 1px solid rgb(37, 37, 37);">Army
+                    Green</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">Black</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">Khaki</button>
+                <button type="button" class="btn btn-light ms-2 "
+                    style="border: 1px solid rgb(37, 37, 37)">Khaki+Camo</button>
+
+                <h4 class="mt-3">
+                    size
+                </h4>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37);">Large</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">Medium</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">X-Large</button>
+
+                <hr style="width: 50%;">
+
+                <div class="input  d-flex m-3">
+                    <input type="number" name="count" id="count" value="1" style="width:50px; padding-left: 10px;">
+                    <button type="button" class="btn btn-primary px-3 ms-2">Add To Cart</button>
+                </div>
+
+                <hr>
+                <div class="txt d-flex">
+                    <p>SKU pdk-elndtttc</p>
+                    <p class="ms-3">catogaries <a href="#">cute Dog collors</a><a href="#">Dog Supplies</a></p>
+                </div>
+                <ul>
+                    <li>High-quality materials: the comfort collar is made of specially selected materials for toughness
+                        and durability.</li>
+                    <li>Reflective stitching: stay safe and be spotted during your morning and evening walks.</li>
+                    <li>Heavy-duty and lightweight-designed for all dog breeds, the comfortable collar is designed to
+                        maintain a lightweight design.</li>
+                    <li>Safety buckle: The side release buckle is made of high-quality, environmentally friendly plastic
+                        with a safety lock to prevent accidental opening of the collar</li>
+                    <li>Note: Please use a soft ruler to measure the widest part of the dog’s neck and add 1 inch to get
+                        the correct length.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- nav for data detail -->
+
+    <div class="container mt-5">
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs" id="productTabs" role="tablist" style="border: none;">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button"
+                    role="tab">Description</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="add-tab" data-bs-toggle="tab" data-bs-target="#additional" type="button"
+                    role="tab">Additional Info</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="rev-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button"
+                    role="tab">Reviews</button>
+            </li>
+        </ul>
+
+        <div class="tab-content border p-4 " id="productTabsContent" style="border: none;">
+            <!-- Description Tab -->
+            <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="desc-tab">
+                <div class="container">
+                    <p class="m-2">
+                        Look into our amazing selection of adjustable dog collars! We understand that every pup is
+                        unique...
+                    </p>
+                    <h2 class="mb-3">The Benefits of an Adjustable Dog Collar</h2>
+                    <p><strong>Perfect Fit, Guaranteed:</strong> No more frustration with ill-fitting collars! ...</p>
+                    <p><strong>Safety First:</strong> A properly fitted collar is essential for safe walks and
+                        outings...</p>
+                    <p><strong>Unmatched Comfort:</strong> Our adjustable collars are designed with your dog’s comfort
+                        in mind...</p>
+                    <p><strong>Style for Every Pup:</strong> Adjustable collars don’t have to be boring!...</p>
+                    <h2 class="mt-3 mb-3">Shop with Confidence</h2>
+                    <p>We are committed to providing high-quality, durable dog collars...</p>
+                    <h2 class="mt-3 mb-3">Product Specification</h2>
+                    <p class="lh-lg">
+                        Material: Nylon <br>
+                        Type: Dogs <br>
+                        Season: All seasons <br>
+                        Product Name: Dog Collar Adjustable <br>
+                        Color: Black, Brown, Khaki and Army Green <br>
+                        Features: 5-hole gear <br>
+                        Size: M, L, XL <br>
+                    </p>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="add-tab">
+                <div class="container">
+                    <table class="table table-bordered text-primary">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Color</th>
+                                <td>Army Green, Black, Khaki, Khaki+Camo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Size</th>
+                                <td>Large, Medium, X-Large</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="rev-tab">
+                <div class="container">
+                    <p class="mb-2">There are no reviews yet</p>
+                    <p>Only logged in customers who have purchased this product may leave a review.</p>
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+
+
+
+    </div>
+    <footer class="footer">
+        <div class="container text-center mb-4">
+            <h4><strong>Subscribe To Our Newsletter</strong></h4>
+            <div class="d-flex justify-content-center subscribe-box mt-3">
+                <input type="email" placeholder="Email" class="form-control w-25">
+                <button class="btn px-4 sub-btn ms-3"><strong>Subscribe</strong></button>
+            </div>
+        </div>
+
+        <div class="container mt-5">
+            <div class="row">
+                <!-- Info -->
+                <div class="col-md-2">
+                    <h5>Info</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Contact US</a></li>
+                        <li><a href="#">Blogs</a></li>
+                    </ul>
+                </div>
+
+                <!-- Categories -->
+                <div class="col-md-2">
+                    <h5>Categories</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Dogs</a></li>
+                        <li><a href="#">Cats</a></li>
+                        <li><a href="#">Fish</a></li>
+                        <li><a href="#">Small Pets</a></li>
+                        <li><a href="#">Reptiles</a></li>
+                    </ul>
+                </div>
+
+                <!-- Center Logo and Description -->
+                <div class="col-md-4 text-center">
+                    <img src="media/logo.png" alt="Pet Daily Kit Logo" width="120" />
+                    <p class="mt-3 text-muted ">
+                        PetDailyKit truly comprehends that your adorable furry companions deserve nothing but the
+                        very
+                        best, which is why we’ve carefully handpicked an extensive collection of products to fulfill
+                        all
+                        their needs.
+                    </p>
+                    <div class="social-icons mt-3">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-pinterest"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+
+                <!-- Policies -->
+                <div class="col-md-2">
+                    <h5>Policies</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Return and Refund Policy</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div class="col-md-2">
+                    <h5>Contact Us</h5>
+                    <p class="contact-icons"><a href="mailto:contact@petdailykit.com">contact@petdailykit.com</a>
+                    </p>
+                    <p class="contact-icons">5100 Dexham Road Ste A, Rowlett, Texas.
+                        75088</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>Copyright © 2025 Pet Daily Kit | Powered by Pet Daily Kit</p>
+        </div>
+    </footer>
+
+    <script>
+
+        let currentVisible = null;
+
+        function toggleSelection(id) {
+            const section = document.getElementById(id);
+
+            if (currentVisible === section) {
+                section.classList.remove("active");
+                currentVisible = null;
+            } else {
+                document.querySelectorAll('.mega-section').forEach(sect => sect.classList.remove('active'));
+                section.classList.add('active');
+                currentVisible = section;
+            }
+
+
+        }
+        const btn = document.getElementById('cart');
+        const sidebar = document.getElementById('sidebar');
+        const close = document.getElementById('close-btn');
+
+        btn.addEventListener('click', () => {
+            sidebar.classList.add('show');
+        });
+
+        close.addEventListener('click', () => {
+            sidebar.classList.remove('show');
+        })
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
