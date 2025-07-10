@@ -4,37 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop</title>
+    <title>Single Product </title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <style>
-        .sidebar {
-            margin: 0;
-            padding: 0;
-            width: 300px;
-            height: 100%;
-            background-color: whitesmoke;
-            overflow: hidden;
-            position: fixed;
-            visibility: hidden;
-            float: right;
-            transform: translateX(100%);
-            z-index: 1200;
-            transition: transform 0.3s ease-in-out;
-            right: 0;
-
-        }
-
-        .sidebar.show {
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        .sidebar.hide {
-            visibility: hidden;
-        }
-
-
         .announcement-bar a:hover {
             color: #F9A826 !important;
         }
@@ -123,6 +96,53 @@
         }
 
 
+        .sidebar {
+            margin: 0;
+            padding: 0;
+            width: 300px;
+            height: 100%;
+            background-color: whitesmoke;
+            overflow: hidden;
+            position: fixed;
+            visibility: hidden;
+            float: right;
+            transform: translateX(100%);
+            z-index: 1200;
+            transition: transform 0.3s ease-in-out;
+            right: 0;
+
+        }
+
+        .sidebar.show {
+            visibility: visible;
+            transform: translateX(0);
+        }
+
+        .sidebar.hide {
+            visibility: hidden;
+        }
+
+
+        .thumbnail-img {
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid transparent;
+            border-radius: 5px;
+        }
+
+        .thumbnail-img.active {
+            border-color: #0d6efd;
+        }
+
+        #main-img {
+            height: 300px;
+            object-fit: cover;
+        }
+
+
+
         .footer {
             background: #f0f8ff;
             background-repeat: repeat;
@@ -185,93 +205,6 @@
             font-weight: normal;
             color: #F9A826;
         }
-
-        .vertical-line {
-            border-left: 1px solid gray;
-            height: 1000px;
-            margin: 0 20px;
-        }
-
-        /* Input range slider  */
-        .range-container {
-            position: relative;
-            padding: 1rem;
-            background-color: #f8fdff;
-            border-radius: 0.5rem;
-            width: 100%;
-            max-width: 300px;
-        }
-
-        .range-label {
-            font-weight: bold;
-            color: #031A6B;
-        }
-
-        .range-wrapper {
-            position: relative;
-            margin-top: 1rem;
-        }
-
-        .range-value {
-            position: absolute;
-            top: -2px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #031A6B;
-            color: white;
-            padding: 2px 10px;
-            font-size: 14px;
-            border-radius: 4px;
-            white-space: nowrap;
-        }
-
-        input[type="range"] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 6px;
-            background: #d3d3d3;
-            border-radius: 3px;
-            outline: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 3px solid #031A6B;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background: white;
-            border: 3px solid #031A6B;
-            border-radius: 50%;
-            cursor: pointer;
-        }
-
-        .range-values {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 0.5rem;
-        }
-
-        .range-values span {
-            background-color: #eee;
-            padding: 3px 8px;
-            border-radius: 5px;
-            font-size: 14px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .menues:hover {
-            color: #F9A826;
-        }
     </style>
 </head>
 
@@ -289,7 +222,7 @@
                 <!-- Right Links -->
                 <div
                     class="col-12 col-md-6 d-flex justify-content-center justify-content-md-end flex-wrap gap-2 announce">
-                    <p class="m-0 p-0 ann"><a href="index.html" class="text-white text-decoration-none ms-3">Home</a></p>
+                    <p class="m-0 p-0 ann"><a href="#" class="text-white text-decoration-none ms-3">Home</a></p>
                     <p class="m-0 p-0 ann"> <a href="#" class="text-white text-decoration-none ms-3">About Us</a></p>
                     <p class="m-0 p-0 ann"><a href="#" class="text-white text-decoration-none ms-3">Blog</a></p>
                     <p class="m-0 p-0 ann"><a href="#"
@@ -307,7 +240,7 @@
     <!-- Nav Bar  -->
     <nav class="navbar navbar-expand-lg px-4">
         <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="index.html">
+            <a class="navbar-brand d-flex align-items-center" href="#">
                 <img src="media/logo.png" alt="Pet Kit Logo" class="me-2">
             </a>
 
@@ -317,7 +250,7 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navContent">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a class="nav-link mx-2" href="#">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link mx-2" href="shop.html">Shop</a></li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
@@ -362,8 +295,6 @@
         </div>
     </nav>
 
-
-    <!-- Dog Section -->
     <div class="container my-5">
         <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="dogs">
 
@@ -602,261 +533,163 @@
 
         </div>
     </div>
-
-
     <div class="container">
-        <p class="m-3" style="color:  #031A6B;">Home / Shop</p>
+        <p class="m-3" style="color:  #031A6B;">Home/Products/Adjustable Dog Training Collar For Outdoor</p>
     </div>
     <hr>
 
+    <!-- main area  -->
     <div class="container">
-        <div class="row">
-            <div class="col-md-3">
-                <h4 style="color: #031A6B;">Filter By Search</h4>
-                <input type="text" name="" class="form-control" id="" placeholder="Search Product">
-                <h4 class="mt-3" style="color: #031A6B;">Filter By Price</h4>
-                <div class="range-container text-center">
-                    <div class="range-label h5">Filter By Price</div>
-                    <div class="range-wrapper">
-                        <div class="range-values">
-                            <span>$0</span>
-                            <span>$215</span>
-                        </div>
-                        <div class="range-value" id="rangeValue">$62</div>
-                        <input type="range" id="priceRange" min="0" max="215" value="62" step="1"
-                            oninput="updateTooltip(this)">
-                    </div>
+        <div class="row justify-content-center">
+            <div class=" col-md-4">
+                <img id="mainImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToR-8yiVQXLA0f4ZrGiLd8p7zBRwkLfi1j6A&s"
+                    alt="" style="height: 300px; margin-right: 30px;" class="img-fluid rounded">
 
-                </div>
-
-
-                <!-- CheckBoxes -->
-                <input type="checkbox" name="cat-supplies" id="cat-supplies" class="menues">
-                <label for="cat-supplies" class="ms-2"><strong>Cat Supplies</strong></label>
-                <br>
-                <div class="ms-2">
-                    <input type="checkbox" name="cat-bowls-feed" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Best Cat Bowl and Cat Feeders</label>
-                    <br>
-                    <input type="checkbox" name="cat-bowls" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Best Cat Bowls</label>
-                    <br>
-                    <input type="checkbox" name="cat-grooming" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Cat Grooming Supplies</label>
-                    <br>
-                    <input type="checkbox" name="cat-hair" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Cat Hair Trimmer</label>
-                    <br>
-                    <input type="checkbox" name="cat-houses" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Cat Houses</label>
-                    <br>
-                    <input type="checkbox" name="cat-climbing" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Cat Scratchers and </label>
-                    <br>
-                    <input type="checkbox" name="cat-carriers" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Cat Carriers</label>
-                </div>
-                <input type="checkbox" name="Dog-supplies" id="cat-supplies" class="menues">
-                <label for="Dog-supplies" class="ms-2 menues"><strong>Dog Supplies</strong></label>
-                <br>
-                <div class="ms-2">
-                    <input type="checkbox" name="cat-bowls-feed" id="cat-supplies" class="menues">
-                    <label for="dog-beds" class="ms-2 menues">Cozy Dog Beds</label>
-                    <br>
-                    <input type="checkbox" name="cat-bowls" id="cat-supplies" class="menues">
-                    <label for="dog-feeder" class="ms-2">Cat Bowls and Feeders</label>
-                    <br>
-                    <input type="checkbox" name="Dog-grooming" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Dog Grooming Tools</label>
-                    <br>
-                    <input type="checkbox" name="cat-hair" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Best Dog Hair Trimmer</label>
-                    <br>
-                    <input type="checkbox" name="cat-houses" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Dog kennel House</label>
-                    <br>
-                    <input type="checkbox" name="dog-travel" id="cat-supplies" class="menues">
-                    <label for="cat-feeder" class="ms-2 menues">Dog travel Bag</label>
-                    <br>
-                    <input type="checkbox" name="dog-carriers" id="cat-supplies" class="menues">
-                    <label for="dog-carrier" class="ms-2 menues">Dog Carriers</label>
+                <div class="d-flex justify-content-center gap-2 flex-wrap mt-4 " style="margin-right: 50px;">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjaumrcxkx_T6l__1kjmx3OgF4Dg8JFCN6vg&s"
+                        class="thumbnail-img active" onclick="changeImage(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdlLvPrETbVlHdk_6SEibgJxtBYE0I_B1yvw&s"
+                        class="thumbnail-img" onclick="changeImage(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwfifwQnEOWnptoVPMjFEJOmGXS3ZA7vrzjA&s"
+                        class="thumbnail-img" onclick="changeImage(this)">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT640CdarTFHbJBqoEHvEZWr3yh4AFsVL7f4g&s"
+                        class="thumbnail-img" onclick="changeImage(this)">
                 </div>
             </div>
 
-            <!-- Border -->
-            <!-- Shop Side -->
-            <div class="col-md-9">
+            <div class="col-md-8">
+                <h2 class="fw-normal">
+                    Adjustable Training Coller For Outdoor
+                </h2>
+                <h3 class="mt-3"><strong>$11.99-$15.99</strong></h3>
+                <h4>Color </h4>
+                <button type="button" class="btn btn-light ms-2" style="border: 1px solid rgb(37, 37, 37);">Army
+                    Green</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">Black</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">Khaki</button>
+                <button type="button" class="btn btn-light ms-2 "
+                    style="border: 1px solid rgb(37, 37, 37)">Khaki+Camo</button>
 
-                <div class="row align-items-center justify-content-between">
-                    <div class="col-md-6 d-flex align-items-center">
-                        <h4 style="color: #031A6B;"><strong>Shop</strong></h4>
-                    </div>
+                <h4 class="mt-3">
+                    size
+                </h4>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37);">Large</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">Medium</button>
+                <button type="button" class="btn btn-light ms-2"
+                    style="border: 1px solid rgb(37, 37, 37)">X-Large</button>
 
-                    <!-- Filters -->
-                    <div class="col-md-6 d-flex justify-content-md-end gap-2 mt-2 mt-md-0">
-                        <!-- Sorting dropdown -->
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Sorting</button>
-                            <ul class="dropdown-menu menues">
-                                <li><a class="dropdown-item" href="#">Title</a></li>
-                                <li><a class="dropdown-item" href="#">Price</a></li>
-                                <li><a class="dropdown-item" href="#">Number of Sales</a></li>
-                                <li><a class="dropdown-item" href="#">Rating</a></li>
-                                <li><a class="dropdown-item" href="#">Last Modified</a></li>
-                                <li><a class="dropdown-item" href="#">Unsorted</a></li>
-                            </ul>
-                        </div>
+                <hr style="width: 50%;">
 
-                        <!-- Order dropdown -->
-                        <div class="dropdown">
-                            <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">Ascending</button>
-                            <ul class="dropdown-menu menues">
-                                <li><a class="dropdown-item" href="#">Default</a></li>
-                                <li><a class="dropdown-item" href="#">Ascending</a></li>
-                                <li><a class="dropdown-item" href="#">Descending</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                <div class="input  d-flex m-3">
+                    <input type="number" name="count" id="count" value="1" style="width:50px; padding-left: 10px;">
+                    <button type="button" class="btn btn-primary px-3 ms-2">Add To Cart</button>
                 </div>
 
-                <!-- Section 2: Product Cards -->
-                <div class="row mt-4">
-                    <!-- Product Card -->
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/Bag and Dog.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Dog Traveller Bag</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$15.99-$49.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Another card -->
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/bathing pets.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Dog Grooming and Bathing Tools</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$9.99-$28.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/bed.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Comfortable and handy bed for dog </h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$6.99-$8.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/bird-ladder.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Hand-crafted bird's Toy for playing</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$6.99-$19.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/cat house.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Product Title</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$6.99-$8.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/Bag and Dog.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Dog Traveller Bag</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$15.99-$49.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Another card -->
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/bathing pets.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Dog Grooming and Bathing Tools</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$9.99-$28.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/bed.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Comfortable and handy bed for dog </h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$6.99-$8.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/bird-ladder.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Hand-crafted bird's Toy for playing</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$6.99-$19.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
-                        <div class="card h-100 shadow-sm">
-                            <img src="media/cat house.jpeg" class="card-img-top" alt="Product 2">
-                            <div class="card-body">
-                                <a href="single-product-page.html" style="text-decoration: none; color: #031A6B;">
-                                    <h5 class="card-title ">Product Title</h5>
-                                    <p style="cursor: pointer; color: #e7930c;"><strong>$6.99-$8.99</strong></p>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+                <hr>
+                <div class="txt d-flex">
+                    <p>SKU pdk-elndtttc</p>
+                    <p class="ms-3">catogaries <a href="#">cute Dog collors</a><a href="#">Dog Supplies</a></p>
                 </div>
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item disabled">
-                            <a class="page-link" href="#" tabindex="-1">Previous</a>
-                        </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#">Next</a>
-                        </li>
-                    </ul>
-                </nav>
+                <ul>
+                    <li>High-quality materials: the comfort collar is made of specially selected materials for toughness
+                        and durability.</li>
+                    <li>Reflective stitching: stay safe and be spotted during your morning and evening walks.</li>
+                    <li>Heavy-duty and lightweight-designed for all dog breeds, the comfortable collar is designed to
+                        maintain a lightweight design.</li>
+                    <li>Safety buckle: The side release buckle is made of high-quality, environmentally friendly plastic
+                        with a safety lock to prevent accidental opening of the collar</li>
+                    <li>Note: Please use a soft ruler to measure the widest part of the dog’s neck and add 1 inch to get
+                        the correct length.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- nav for data detail -->
+
+    <div class="container mt-5">
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs" id="productTabs" role="tablist" style="border: none;">
+            <li class="nav-item" role="presentation">
+                <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button"
+                    role="tab">Description</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="add-tab" data-bs-toggle="tab" data-bs-target="#additional" type="button"
+                    role="tab">Additional Info</button>
+            </li>
+            <li class="nav-item" role="presentation">
+                <button class="nav-link" id="rev-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button"
+                    role="tab">Reviews</button>
+            </li>
+        </ul>
+
+        <div class="tab-content border p-4 " id="productTabsContent" style="border: none;">
+            <!-- Description Tab -->
+            <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="desc-tab">
+                <div class="container">
+                    <p class="m-2">
+                        Look into our amazing selection of adjustable dog collars! We understand that every pup is
+                        unique...
+                    </p>
+                    <h2 class="mb-3">The Benefits of an Adjustable Dog Collar</h2>
+                    <p><strong>Perfect Fit, Guaranteed:</strong> No more frustration with ill-fitting collars! ...</p>
+                    <p><strong>Safety First:</strong> A properly fitted collar is essential for safe walks and
+                        outings...</p>
+                    <p><strong>Unmatched Comfort:</strong> Our adjustable collars are designed with your dog’s comfort
+                        in mind...</p>
+                    <p><strong>Style for Every Pup:</strong> Adjustable collars don’t have to be boring!...</p>
+                    <h2 class="mt-3 mb-3">Shop with Confidence</h2>
+                    <p>We are committed to providing high-quality, durable dog collars...</p>
+                    <h2 class="mt-3 mb-3">Product Specification</h2>
+                    <p class="lh-lg">
+                        Material: Nylon <br>
+                        Type: Dogs <br>
+                        Season: All seasons <br>
+                        Product Name: Dog Collar Adjustable <br>
+                        Color: Black, Brown, Khaki and Army Green <br>
+                        Features: 5-hole gear <br>
+                        Size: M, L, XL <br>
+                    </p>
+                </div>
+            </div>
+            <!-- additional Tab -->
+            <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="add-tab">
+                <div class="container">
+                    <table class="table table-bordered text-primary">
+                        <tbody>
+                            <tr>
+                                <th scope="row">Color</th>
+                                <td>Army Green, Black, Khaki, Khaki+Camo</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Size</th>
+                                <td>Large, Medium, X-Large</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="rev-tab">
+                <div class="container">
+                    <p class="mb-2">There are no reviews yet</p>
+                    <p>Only logged in customers who have purchased this product may leave a review.</p>
+                </div>
+
             </div>
 
         </div>
+
+
+
+
+
+
     </div>
     <footer class="footer">
         <div class="container text-center mb-4">
@@ -896,11 +729,9 @@
                 <div class="col-md-4 text-center">
                     <img src="media/logo.png" alt="Pet Daily Kit Logo" width="120" />
                     <p class="mt-3 text-muted ">
-                        PetDailyKit truly comprehends that your adorable furry companions deserve nothing but
-                        the
+                        PetDailyKit truly comprehends that your adorable furry companions deserve nothing but the
                         very
-                        best, which is why we’ve carefully handpicked an extensive collection of products to
-                        fulfill
+                        best, which is why we’ve carefully handpicked an extensive collection of products to fulfill
                         all
                         their needs.
                     </p>
@@ -940,13 +771,8 @@
         </div>
     </footer>
 
-
-
-    <!-- Footer Section -->
-
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+
         let currentVisible = null;
 
         function toggleSelection(id) {
@@ -974,19 +800,18 @@
         close.addEventListener('click', () => {
             sidebar.classList.remove('show');
         })
-    </script>
-    <script>
-        function updateTooltip(slider) {
-            const tooltip = document.getElementById("rangeValue");
-            tooltip.textContent = `$${slider.value}`;
-            const percent = (slider.value - slider.min) / (slider.max - slider.min);
-            const offset = percent * (slider.offsetWidth - 20); // 20 = thumb width
-            tooltip.style.left = `${offset}px`;
-        }
 
-        // Initialize on page load
-        updateTooltip(document.getElementById("priceRange"));
+        function changeImage(imgElement) {
+            const mainImage = document.getElementById('mainImage');
+            mainImage.src = imgElement.src;
+
+            // Optional: visually highlight selected thumbnail
+            document.querySelectorAll('.thumbnail-img').forEach(img => img.classList.remove('active'));
+            imgElement.classList.add('active');
+        }
     </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

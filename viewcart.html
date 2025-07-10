@@ -4,208 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Single Product </title>
+    <title>View Cart</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    <style>
-        .announcement-bar a:hover {
-            color: #F9A826 !important;
-        }
-
-        .announcement-bar p:hover {
-            color: #F9A826 !important;
-        }
-
-        .navbar {
-            background-color: #f9fafb;
-        }
-
-        .navbar-brand img {
-            height: 40px;
-        }
-
-        .nav-link {
-            color: #001f5f;
-            font-weight: 600;
-        }
-
-        .nav-link:hover,
-        .dropdown-item:hover {
-            color: #f9a826;
-        }
-
-        .icon-btn {
-            color: #001f5f;
-            font-size: 1.3rem;
-            margin-left: 15px;
-            position: relative;
-        }
-
-        .mega-section {
-            display: none;
-            background-color: #fff;
-            padding: 30px 50px;
-            animation: fadeIn 0.3s ease-in-out;
-        }
-
-        .mega-section.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(-10px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .product {
-            border-bottom: 1px solid;
-            padding: 10px 0;
-        }
-
-        .product-img {
-            width: 40px;
-            height: auto;
-            object-fit: cover;
-        }
-
-        .star-rating {
-            color: orange;
-            font-size: 0.9rem;
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid orange;
-        }
-
-        .cart-badge {
-            position: absolute;
-            top: -6px;
-            right: -8px;
-            background: #001f5f;
-            color: white;
-            font-size: 10px;
-            border-radius: 50%;
-            padding: 2px 5px;
-        }
-
-
-        .sidebar {
-            margin: 0;
-            padding: 0;
-            width: 300px;
-            height: 100%;
-            background-color: whitesmoke;
-            overflow: hidden;
-            position: fixed;
-            visibility: hidden;
-            float: right;
-            transform: translateX(100%);
-            z-index: 1200;
-            transition: transform 0.3s ease-in-out;
-            right: 0;
-
-        }
-
-        .sidebar.show {
-            visibility: visible;
-            transform: translateX(0);
-        }
-
-        .sidebar.hide {
-            visibility: hidden;
-        }
-
-
-        .thumbnail-img {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            cursor: pointer;
-            border: 2px solid transparent;
-            border-radius: 5px;
-        }
-
-        .thumbnail-img.active {
-            border-color: #0d6efd;
-        }
-
-        #main-img {
-            height: 300px;
-            object-fit: cover;
-        }
-
-
-
-        .footer {
-            background: #f0f8ff;
-            background-repeat: repeat;
-            padding: 50px 0 30px;
-            color: #002244;
-        }
-
-        .footer a {
-            text-decoration: none;
-            color: #002244;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer h5 {
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .subscribe-box input {
-            border: 1px solid #ccc;
-            border-radius: 5px 0 0 5px;
-            padding: 10px;
-        }
-
-        .subscribe-box button {
-            border-radius: 0 5px 5px 0;
-        }
-
-        .footer .social-icons a {
-            margin: 0 10px;
-            color: #002244;
-            font-size: 1.2rem;
-        }
-
-        .footer-bottom {
-            border-top: 1px solid #ccc;
-            margin-top: 30px;
-            padding-top: 20px;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-
-        .contact-icons i {
-            margin-right: 8px;
-        }
-
-        .sub-btn {
-            background-color: #031A6B;
-            color: white;
-        }
-
-        .sub-btn:hover {
-            background-color: #F9A826;
-        }
-
-        .list-unstyled li a:hover {
-            font-weight: normal;
-            color: #F9A826;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -250,7 +52,7 @@
 
             <div class="collapse navbar-collapse justify-content-between" id="navContent">
                 <ul class="navbar-nav ms-3">
-                    <li class="nav-item"><a class="nav-link mx-2" href="#">Shop</a></li>
+                    <li class="nav-item"><a class="nav-link mx-2" href="shop.html">Shop</a></li>
 
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle mx-2" href="#" data-bs-toggle="dropdown"
@@ -294,7 +96,7 @@
             </div>
         </div>
     </nav>
-
+    <!-- Dog Section -->
     <div class="container my-5">
         <div class="mega-section row bg-white shadow rounded p-4 g-4 align-items-start" id="dogs">
 
@@ -416,8 +218,6 @@
 
         </div>
     </div>
-
-
     <!-- Birds -->
     <div class="container" my-5>
         <div class="row mega-section bg-white shadow p-4 g-3 rounded align-items-start " id="birds">
@@ -533,164 +333,15 @@
 
         </div>
     </div>
+
     <div class="container">
-        <p class="m-3" style="color:  #031A6B;">Home/Products/Adjustable Dog Training Collar For Outdoor</p>
+        <p class="m-3" style="color:  #031A6B;">Home/ViewCart</p>
     </div>
     <hr>
 
-    <!-- main area  -->
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class=" col-md-4">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcToR-8yiVQXLA0f4ZrGiLd8p7zBRwkLfi1j6A&s"
-                    alt="" style="height: 300px; margin-right: 30px;" class="img-fluid rounded">
-
-                <div class="d-flex justify-content-center gap-2 flex-wrap mt-4 " style="margin-right: 50px;">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjaumrcxkx_T6l__1kjmx3OgF4Dg8JFCN6vg&s"
-                        class="thumbnail-img active" onclick="changeImage(this)">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTdlLvPrETbVlHdk_6SEibgJxtBYE0I_B1yvw&s"
-                        class="thumbnail-img" onclick="changeImage(this)">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwfifwQnEOWnptoVPMjFEJOmGXS3ZA7vrzjA&s"
-                        class="thumbnail-img" onclick="changeImage(this)">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT640CdarTFHbJBqoEHvEZWr3yh4AFsVL7f4g&s"
-                        class="thumbnail-img" onclick="changeImage(this)">
-                </div>
-            </div>
-
-            <div class="col-md-8">
-                <h2 class="fw-normal">
-                    Adjustable Training Coller For Outdoor
-                </h2>
-                <h3 class="mt-3"><strong>$11.99-$15.99</strong></h3>
-                <h4>Color </h4>
-                <button type="button" class="btn btn-light ms-2" style="border: 1px solid rgb(37, 37, 37);">Army
-                    Green</button>
-                <button type="button" class="btn btn-light ms-2"
-                    style="border: 1px solid rgb(37, 37, 37)">Black</button>
-                <button type="button" class="btn btn-light ms-2"
-                    style="border: 1px solid rgb(37, 37, 37)">Khaki</button>
-                <button type="button" class="btn btn-light ms-2 "
-                    style="border: 1px solid rgb(37, 37, 37)">Khaki+Camo</button>
-
-                <h4 class="mt-3">
-                    size
-                </h4>
-                <button type="button" class="btn btn-light ms-2"
-                    style="border: 1px solid rgb(37, 37, 37);">Large</button>
-                <button type="button" class="btn btn-light ms-2"
-                    style="border: 1px solid rgb(37, 37, 37)">Medium</button>
-                <button type="button" class="btn btn-light ms-2"
-                    style="border: 1px solid rgb(37, 37, 37)">X-Large</button>
-
-                <hr style="width: 50%;">
-
-                <div class="input  d-flex m-3">
-                    <input type="number" name="count" id="count" value="1" style="width:50px; padding-left: 10px;">
-                    <button type="button" class="btn btn-primary px-3 ms-2">Add To Cart</button>
-                </div>
-
-                <hr>
-                <div class="txt d-flex">
-                    <p>SKU pdk-elndtttc</p>
-                    <p class="ms-3">catogaries <a href="#">cute Dog collors</a><a href="#">Dog Supplies</a></p>
-                </div>
-                <ul>
-                    <li>High-quality materials: the comfort collar is made of specially selected materials for toughness
-                        and durability.</li>
-                    <li>Reflective stitching: stay safe and be spotted during your morning and evening walks.</li>
-                    <li>Heavy-duty and lightweight-designed for all dog breeds, the comfortable collar is designed to
-                        maintain a lightweight design.</li>
-                    <li>Safety buckle: The side release buckle is made of high-quality, environmentally friendly plastic
-                        with a safety lock to prevent accidental opening of the collar</li>
-                    <li>Note: Please use a soft ruler to measure the widest part of the dog’s neck and add 1 inch to get
-                        the correct length.</li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <!-- nav for data detail -->
-
-    <div class="container mt-5">
-        <!-- Nav Tabs -->
-        <ul class="nav nav-tabs" id="productTabs" role="tablist" style="border: none;">
-            <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="desc-tab" data-bs-toggle="tab" data-bs-target="#desc" type="button"
-                    role="tab">Description</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="add-tab" data-bs-toggle="tab" data-bs-target="#additional" type="button"
-                    role="tab">Additional Info</button>
-            </li>
-            <li class="nav-item" role="presentation">
-                <button class="nav-link" id="rev-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button"
-                    role="tab">Reviews</button>
-            </li>
-        </ul>
-
-        <div class="tab-content border p-4 " id="productTabsContent" style="border: none;">
-            <!-- Description Tab -->
-            <div class="tab-pane fade show active" id="desc" role="tabpanel" aria-labelledby="desc-tab">
-                <div class="container">
-                    <p class="m-2">
-                        Look into our amazing selection of adjustable dog collars! We understand that every pup is
-                        unique...
-                    </p>
-                    <h2 class="mb-3">The Benefits of an Adjustable Dog Collar</h2>
-                    <p><strong>Perfect Fit, Guaranteed:</strong> No more frustration with ill-fitting collars! ...</p>
-                    <p><strong>Safety First:</strong> A properly fitted collar is essential for safe walks and
-                        outings...</p>
-                    <p><strong>Unmatched Comfort:</strong> Our adjustable collars are designed with your dog’s comfort
-                        in mind...</p>
-                    <p><strong>Style for Every Pup:</strong> Adjustable collars don’t have to be boring!...</p>
-                    <h2 class="mt-3 mb-3">Shop with Confidence</h2>
-                    <p>We are committed to providing high-quality, durable dog collars...</p>
-                    <h2 class="mt-3 mb-3">Product Specification</h2>
-                    <p class="lh-lg">
-                        Material: Nylon <br>
-                        Type: Dogs <br>
-                        Season: All seasons <br>
-                        Product Name: Dog Collar Adjustable <br>
-                        Color: Black, Brown, Khaki and Army Green <br>
-                        Features: 5-hole gear <br>
-                        Size: M, L, XL <br>
-                    </p>
-                </div>
-            </div>
-
-            <div class="tab-pane fade" id="additional" role="tabpanel" aria-labelledby="add-tab">
-                <div class="container">
-                    <table class="table table-bordered text-primary">
-                        <tbody>
-                            <tr>
-                                <th scope="row">Color</th>
-                                <td>Army Green, Black, Khaki, Khaki+Camo</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Size</th>
-                                <td>Large, Medium, X-Large</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-
-            <div class="tab-pane fade show active" id="review" role="tabpanel" aria-labelledby="rev-tab">
-                <div class="container">
-                    <p class="mb-2">There are no reviews yet</p>
-                    <p>Only logged in customers who have purchased this product may leave a review.</p>
-                </div>
-
-            </div>
-
-        </div>
 
 
-
-
-
-
-    </div>
+   
     <footer class="footer">
         <div class="container text-center mb-4">
             <h4><strong>Subscribe To Our Newsletter</strong></h4>
@@ -770,39 +421,6 @@
             <p>Copyright © 2025 Pet Daily Kit | Powered by Pet Daily Kit</p>
         </div>
     </footer>
-
-    <script>
-
-        let currentVisible = null;
-
-        function toggleSelection(id) {
-            const section = document.getElementById(id);
-
-            if (currentVisible === section) {
-                section.classList.remove("active");
-                currentVisible = null;
-            } else {
-                document.querySelectorAll('.mega-section').forEach(sect => sect.classList.remove('active'));
-                section.classList.add('active');
-                currentVisible = section;
-            }
-
-
-        }
-        const btn = document.getElementById('cart');
-        const sidebar = document.getElementById('sidebar');
-        const close = document.getElementById('close-btn');
-
-        btn.addEventListener('click', () => {
-            sidebar.classList.add('show');
-        });
-
-        close.addEventListener('click', () => {
-            sidebar.classList.remove('show');
-        })
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>
